@@ -1,0 +1,40 @@
+# ─── Telegram ───────────────────────────────────────────────────────────────
+telegram.bot.username=your_bot_username
+telegram.bot.token=PLACEHOLDER_PUT_REAL_TOKEN_IN_APPLICATION_PROPERTIES
+
+# Admin Telegram user IDs (comma-separated). Find yours via @userinfobot.
+admin.telegram-ids=123456789
+
+# ─── STO Info (used in messages) ────────────────────────────────────────────
+sto.name=Auto Service Tashkent
+sto.address=Tashkent, Yunusabad, Street 5
+sto.phone=+998901234567
+sto.timezone=Asia/Tashkent
+
+# ─── Database — H2 file mode (dev) ──────────────────────────────────────────
+spring.datasource.url=jdbc:h2:file:./data/stobookingdb
+spring.datasource.username=sa
+spring.datasource.password=
+spring.datasource.driver-class-name=org.h2.Driver
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+# H2 browser console: http://localhost:8080/h2-console
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
+# ─── Database — PostgreSQL (prod) ───────────────────────────────────────────
+# Uncomment these and comment out the H2 block above when deploying:
+# spring.datasource.url=jdbc:postgresql://localhost:5432/stobookingdb
+# spring.datasource.username=sto_user
+# spring.datasource.password=secret
+# spring.datasource.driver-class-name=org.postgresql.Driver
+# spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+
+# ─── JPA / Flyway ────────────────────────────────────────────────────────────
+spring.jpa.hibernate.ddl-auto=validate
+spring.flyway.enabled=true
+spring.flyway.locations=classpath:db/migration
+
+# ─── Logging ─────────────────────────────────────────────────────────────────
+logging.level.com.umd.stobooking=DEBUG
+logging.level.org.telegram=INFO

@@ -1,0 +1,22 @@
+package com.umd.stobooking.bot.state;
+
+public enum BotStateEnum {
+    IDLE,
+
+    // Registration
+    AWAITING_PHONE,
+    AWAITING_CAR_BRAND,
+    AWAITING_CAR_MODEL,
+    AWAITING_CAR_YEAR,
+    AWAITING_CAR_ENGINE,
+
+    // Booking
+    AWAITING_BOOK_PATH,
+    AWAITING_CATEGORY,
+    AWAITING_SERVICE,
+    AWAITING_PROBLEM_DESCRIPTION,
+    AWAITING_BOOK_CAR,
+    AWAITING_BOOK_DATE,
+    AWAITING_BOOK_TIME,
+    AWAITING_BOOK_CONFIRM
+}

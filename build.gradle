@@ -1,0 +1,67 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.6'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.umd'
+version = '0.0.1-SNAPSHOT'
+description = 'STO Booking Telegram Bot'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot starters
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Telegram Bot
+    implementation 'org.telegram:telegrambots-spring-boot-starter:6.9.7.1'
+
+    // Database — H2 for dev (file mode)
+    runtimeOnly 'com.h2database:h2'
+
+    // Database — PostgreSQL for prod
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Flyway migrations
+    implementation 'org.flywaydb:flyway-core'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Jackson (JSON serialization for state_data)
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+    // JAXB API — required by jackson-module-jaxb-annotations (pulled in by telegrambots)
+    // Removed from JDK in Java 9+, must be added explicitly
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
+    // Dev tools (hot reload)
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Tests
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
